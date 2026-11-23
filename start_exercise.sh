@@ -1,34 +1,57 @@
 #!/usr/bin/env bash
 # Clone script for SSD Week 3 Lab: Code Documentation, Structure & Refactoring
 # Organization: The-British-College-Nepal
-# Repository: ssd-2026-week3-exercise
+# Naming Convention: <your-name>-ssd-2026-week3-exercise
 
 set -e
 
-REPO_URL="https://github.com/The-British-College-Nepal/ssd-2026-week3-exercise.git"
-TARGET_DIR="ssd-2026-week3-exercise"
-
 echo "============================================================"
 echo "🚀 SSD Week 3 Lab: Documentation, Structure & Refactoring"
-echo "   Cloning starter repository..."
 echo "============================================================"
 
-if [ -d "$TARGET_DIR" ]; then
-  echo "⚠️ Directory '$TARGET_DIR' already exists. Please remove or rename it before cloning."
+# If student name is provided as argument, use it; otherwise prompt
+if [ -n "$1" ]; then
+  STUDENT_NAME="$1"
+else
+  echo ""
+  echo "Enter your name to clone your personal repository:"
+  echo "(Example: sudan, crystal, garima, sujal)"
+  read -p "Your Name: " STUDENT_NAME
+fi
+
+# Clean up input (lowercase, trimmed)
+STUDENT_NAME=$(echo "$STUDENT_NAME" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
+
+if [ -z "$STUDENT_NAME" ]; then
+  echo "❌ Error: Name cannot be empty. Please run ./start_exercise.sh <your-name>"
   exit 1
 fi
 
-git clone "$REPO_URL" "$TARGET_DIR"
+REPO_NAME="${STUDENT_NAME}-ssd-2026-week3-exercise"
+REPO_URL="https://github.com/The-British-College-Nepal/${REPO_NAME}.git"
+TEMPLATE_URL="https://github.com/The-British-College-Nepal/ssd-2026-week3-exercise.git"
 
-if [ $? -eq 0 ]; then
-  echo ""
-  echo "✅ Repository successfully cloned into '$TARGET_DIR'!"
-  echo ""
-  echo "👉 Next Steps:"
-  echo "   1. cd $TARGET_DIR"
-  echo "   2. git checkout -b feature/step1-clean-code"
-  echo "   3. Open the project in IntelliJ IDEA or Eclipse."
-  echo "============================================================"
-else
-  echo "❌ Failed to clone repository. Check your network connection and GitHub permissions."
+echo ""
+echo "🔍 Checking for repository: $REPO_NAME..."
+
+if [ -d "$REPO_NAME" ]; then
+  echo "⚠️ Directory '$REPO_NAME' already exists locally."
+  exit 1
 fi
+
+# Try cloning the student's repository first
+if git clone "$REPO_URL" "$REPO_NAME" 2>/dev/null; then
+  echo "✅ Successfully cloned your repository: $REPO_NAME"
+else
+  echo "ℹ️ Personal repository '$REPO_NAME' not found yet."
+  echo "   Cloning the root template into '$REPO_NAME'..."
+  git clone "$TEMPLATE_URL" "$REPO_NAME"
+fi
+
+echo ""
+echo "============================================================"
+echo "👉 Next Steps:"
+echo "   1. cd $REPO_NAME"
+echo "   2. git checkout -b feature/step1-clean-code"
+echo "   3. Open the project in IntelliJ IDEA or Eclipse."
+echo "============================================================"

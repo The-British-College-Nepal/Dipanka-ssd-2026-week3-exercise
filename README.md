@@ -8,6 +8,32 @@ Progress: [██████░░░░░░░░░░░░] Step 1 of 3 (
 
 ---
 
+> [!IMPORTANT]
+> ### 🏷️ Repository Creation & Naming Convention
+> Before writing any code, you must create your own copy of this lab repository:
+> 1. Click the green **"Use this template"** ➡️ **"Create a new repository"** button at the top right of this page (or click **Fork**).
+> 2. **Owner:** Select **`The-British-College-Nepal`** (or your own GitHub account).
+> 3. **Repository Name:** You **MUST** strictly follow this exact naming format:
+>    ```text
+>    <your-name>-ssd-2026-week3-exercise
+>    ```
+>    * ✅ **Correct Examples:**
+>      * `sudan-ssd-2026-week3-exercise`
+>      * `crystal-ssd-2026-week3-exercise`
+>      * `garima-ssd-2026-week3-exercise`
+>      * `sujal-ssd-2026-week3-exercise`
+>      * `roshan-ssd-2026-week3-exercise`
+>    * ❌ **Incorrect Examples:** `week3`, `my-lab3`, `exercise3`, `StatsLab`.
+> 4. **Visibility:** Select **Public**.
+> 5. Click **"Create repository"**.
+> 6. Clone your newly created repository to your laptop/lab machine:
+>    ```bash
+>    git clone https://github.com/The-British-College-Nepal/<your-name>-ssd-2026-week3-exercise.git
+>    cd <your-name>-ssd-2026-week3-exercise
+>    ```
+
+---
+
 ## 🎯 Welcome to Your Week 3 Interactive Lab!
 
 Welcome! In professional software development, writing code that *simply executes* is only the bare minimum. Professional software engineering requires code to be **readable, self-documenting, maintainable, and safely encapsulated**.
@@ -35,7 +61,7 @@ Just like GitHub Skills:
 > ### 📢 In-Lab Policy: Work in a Feature Branch!
 > Never commit directly to `main`. Create an isolated feature branch for Step 1, verify your tests locally, and merge into `main` only when ready.
 
-Open your terminal inside this repository and switch to a new branch:
+Open your terminal inside your cloned repository and switch to a new branch:
 
 ```bash
 # 1. Ensure your local main is up to date
