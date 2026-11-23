@@ -6,16 +6,25 @@ public class Stats {
 	private int count;
 
 	public Stats(int capacity) {
+		if (capacity <= 0) {
+			throw new IllegalArgumentException("Capacity must be greater than 0");
+		}
 		this.numbers = new int[capacity];
 		this.count = 0;
 	}
 
 	public void addValue(int value) {
+		if (count >= numbers.length) {
+			throw new IllegalStateException("Stats is full: cannot add more values");
+		}
 		numbers[count] = value;
 		count++;
 	}
 
 	public int getMax() {
+		if (count == 0) {
+			throw new IllegalStateException("No values have been added");
+		}
 		int max = numbers[0];
 		for (int i = 1; i < count; i++) {
 			if (numbers[i] > max) {
@@ -26,6 +35,9 @@ public class Stats {
 	}
 
 	public int getMin() {
+		if (count == 0) {
+			throw new IllegalStateException("No values have been added");
+		}
 		int min = numbers[0];
 		for (int i = 1; i < count; i++) {
 			if (numbers[i] < min) {
@@ -36,6 +48,9 @@ public class Stats {
 	}
 
 	public double getAverage() {
+		if (count == 0) {
+			return 0.0;
+		}
 		return (double) getTotal() / count;
 	}
 
